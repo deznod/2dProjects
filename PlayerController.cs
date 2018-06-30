@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour {
 	
 	
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 		count = 0;
         SetCountText(); // Запускаем функцию SetCountText для обновления пользовательского интерфейса
 		winText.text = "";// Устанавливаем победный текст
+      
 	}
 
 	
@@ -34,7 +35,12 @@ public class PlayerController : MonoBehaviour {
 
 		//добавляем физику нашему игроку  с помощью (движения) вектор3 умножая его на скорость - скорость которая отобразится в инспекторе 
 		rb.AddForce (movement * speed);
-	}
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+   
 
     /*
       *Работа метода заключается в том если игрок подбирает объект с указыным тегом то объект становится неактивным и исчезает
@@ -59,7 +65,9 @@ public class PlayerController : MonoBehaviour {
 		if (count >= 12) 
 		{
 			winText.text = "You Win!";// Задаем текстовое значение для нашего текстового поля.
-		}
-	}
+            
+        }
+      
+    }
 }
  
